@@ -1,0 +1,38 @@
+#Credentials
+ADMIN_PASSWORD=password
+MYSQL_PASSWORD=password
+RABBIT_PASSWORD=password
+SERVICE_PASSWORD=password
+SERVICE_TOKEN=password
+ 
+##Neutron
+enable_service neutron
+disable_service n-net
+enable_service q-svc
+enable_service q-agt
+enable_service q-dhcp
+enable_service q-l3
+enable_service q-meta
+ 
+#Swift Requirements
+enable_service s-proxy s-object s-container s-account
+SWIFT_REPLICAS=1
+SWIFT_HASH=password
+ 
+##Heat
+ENABLED_SERVICES+=,heat,h-api,h-api-cfn,h-api-cw,h-eng
+IMAGE_URLS+=",http://fedorapeople.org/groups/heat/prebuilt-jeos-images/F17-x86_64-cfntools.qcow2"
+ 
+##Ceilometer
+enable_service ceilometer-acompute,ceilometer-acentral,ceilometer-collector,ceilometer-api
+enable_service ceilometer-alarm-notify,ceilometer-alarm-eval
+
+###Ironic
+enable_service ir-api
+enable_service ir-cond
+
+#Log Output
+LOGFILE=/opt/stack/logs/stack.sh.log
+VERBOSE=True
+LOG_COLOR=False
+SCREEN_LOGDIR=/opt/stack/logs
